@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.models.seed_model import SeedInputModel
+import joblib
+import pickle
 
 
 app = FastAPI(title="Pumpkin Seed API")
@@ -13,6 +15,7 @@ async def seed_entry(data: SeedInputModel):
     data_dict = data.model_dump()
 
     return {
-        "message": "Данные получены.",
+        "message": "Data received",
         "received_data": data_dict
     }
+
