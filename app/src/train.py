@@ -75,7 +75,7 @@ def evaluate_model(model, X_test, y_test):
 
 
 def main():
-    data = load_data("data/Pumpkin_Seeds_Dataset.xlsx")
+    data = load_data("/home/vorob/projects/Python_projects/Seed_prediction/app/data/Pumpkin_Seeds_Dataset.xlsx")
 
     X, y, encoder = prepare_data(data)
 
