@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+import joblib
+
 def load_data(path: str):
     return pd.read_excel(path)
 
@@ -82,6 +84,10 @@ def main():
     model = train_model(X_train, y_train)
 
     evaluate_model(model, X_test, y_test)
+
+    joblib.dump(model, "model.joblib")
+
+    joblib.dump(encoder, "label_encoder.joblib")
 
 
 if __name__ == "__main__":
