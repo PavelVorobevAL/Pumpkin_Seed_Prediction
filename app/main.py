@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from app.models.seed_model import SeedInputModel
+
 import joblib
 import pickle
 import pandas as pd
-
 
 app = FastAPI(title="Pumpkin Seed API")
 
@@ -17,15 +17,18 @@ async def root():
 @app.post("/predict")
 async def seed_entry(data: SeedInputModel):
     data_dict = data.model_dump() # converts the Pydantic object into a normal Python dictionary
-    #X_new = pd.DataFrame([data_dict])
+    X_new = pd.DataFrame([data_dict])
 
-    #prediction = model.predict(X_new)
+    prediction = model.predict(X_new)
+    seed_name = encoder.inverse_transform(prediction)
+    
+
 
 
     return {
         "message": "Data received",
         "received_data": data_dict,
-        #"prediction": prediction
+        "prediction": seed_name[0]
 
     }
 
