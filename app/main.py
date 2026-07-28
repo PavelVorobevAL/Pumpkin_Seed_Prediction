@@ -17,11 +17,15 @@ async def root():
 @app.post("/predict")
 async def seed_entry(data: SeedInputModel):
     data_dict = data.model_dump() # converts the Pydantic object into a normal Python dictionary
-    X_new = pd.DataFrame([data_dict])
+    #X_new = pd.DataFrame([data_dict])
+
+    #prediction = model.predict(X_new)
 
 
     return {
         "message": "Data received",
-        "received_data": data_dict
+        "received_data": data_dict,
+        #"prediction": prediction
+
     }
 
