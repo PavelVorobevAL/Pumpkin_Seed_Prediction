@@ -1,5 +1,9 @@
 from fastapi import FastAPI
+
 from app.models.seed_model import SeedInputModel
+from app.services.predictor import predict_seed
+
+
 from contextlib import asynccontextmanager
 from fastapi import Request
 
@@ -33,22 +37,12 @@ async def root():
 @app.post("/predict")
 async def seed_entry(data: SeedInputModel, request: Request):
 
-    model = request.app.state.model
-    encoder = request.app.state.encoder
-
-    data_dict = data.model_dump() # converts the Pydantic object into a normal Python dictionary
-    X_new = pd.DataFrame([data_dict])
-
-    prediction = model.predict(X_new)
-    seed_name = encoder.inverse_transform(prediction)
-    
-
+    prediction = predict_seed(data, request.app.state.model, request.app.state.encoder)
 
 
     return {
         "message": "Data received",
-        "received_data": data_dict,
-        "prediction": seed_name[0]
+        "prediction": prediction
 
     }
 
