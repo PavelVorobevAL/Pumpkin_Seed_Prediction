@@ -1,30 +1,18 @@
-import joblib
-import pandas as pd
+from fastapi import APIRouter
+from app.models.seed_model import SeedInputModel
+from fastapi import Request
+from app.services.predictor import predict_seed
 
-model = joblib.load("model.joblib")
+router = APIRouter()
 
-encoder = joblib.load("label_encoder.joblib")
+@router.post("/predict")
+async def seed_entry(data: SeedInputModel, request: Request):
 
-X_new = pd.DataFrame([
-    {
-        "Area": 500,
-        "Perimeter": 90,
-        "Major_Axis_Length": 30,
-        "Minor_Axis_Length": 20,
-        "Convex_Area": 510,
-        "Equiv_Diameter": 25,
-        "Eccentricity": 0.75,
-        "Solidity": 0.98,
-        "Extent": 0.82,
-        "Roundness": 0.77,
-        "Aspect_Ration": 1.50,
-        "Compactness": 0.81
+    prediction = predict_seed(data, request.app.state.model, request.app.state.encoder)
+
+
+    return {
+        "message": "Data received",
+        "prediction": prediction
+
     }
-])
-
-prediction = model.predict(X_new)
-
-print(prediction)
-
-label = encoder.inverse_transform(prediction)
-print(label)

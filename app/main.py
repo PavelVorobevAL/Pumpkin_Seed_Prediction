@@ -1,11 +1,8 @@
 from fastapi import FastAPI
 
-from app.models.seed_model import SeedInputModel
-from app.services.predictor import predict_seed
-
+from app.routes import predict
 
 from contextlib import asynccontextmanager
-from fastapi import Request
 
 import joblib
 import pickle
@@ -34,15 +31,8 @@ app = FastAPI(
 async def root():
     return {"text" : "Hello"}
 
-@app.post("/predict")
-async def seed_entry(data: SeedInputModel, request: Request):
 
-    prediction = predict_seed(data, request.app.state.model, request.app.state.encoder)
+app.include_router(predict.router)
 
 
-    return {
-        "message": "Data received",
-        "prediction": prediction
-
-    }
 
