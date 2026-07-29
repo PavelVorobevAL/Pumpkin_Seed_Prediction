@@ -13,3 +13,7 @@ class SeedInputModel(BaseModel):
     Roundness: float
     Aspect_Ration: float
     Compactness: float
+
+class PredictionResponse(BaseModel):
+    message: str
+    prediction: str
