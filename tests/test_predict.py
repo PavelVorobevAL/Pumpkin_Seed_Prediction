@@ -23,3 +23,9 @@ def test_predict_success():
             response = client.post("/predict", json=data) # send a POST request to the /predict endpoint
 
             assert response.status_code == 200
+
+            response_data = response.json()
+
+            assert response_data["message"] == "Data received"
+            assert "prediction" in response_data
+
