@@ -1,18 +1,18 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class SeedInputModel(BaseModel):
-    Area: int
-    Perimeter: float
-    Major_Axis_Length: float
-    Minor_Axis_Length: float
-    Convex_Area: int
-    Equiv_Diameter: float
-    Eccentricity: float
-    Solidity: float
-    Extent: float
-    Roundness: float
-    Aspect_Ration: float
-    Compactness: float
+    Area: int = Field(gt=0)
+    Perimeter: float = Field(gt=0)
+    Major_Axis_Length: float = Field(gt=0)
+    Minor_Axis_Length: float = Field(gt=0)
+    Convex_Area: int = Field(gt=0)
+    Equiv_Diameter: float = Field(gt=0)
+    Eccentricity: float = Field(gt=0)
+    Solidity: float = Field(gt=0)
+    Extent: float = Field(gt=0)
+    Roundness: float = Field(gt=0)
+    Aspect_Ration: float = Field(gt=0)
+    Compactness: float = Field(gt=0)
 
 class PredictionResponse(BaseModel):
     message: str
