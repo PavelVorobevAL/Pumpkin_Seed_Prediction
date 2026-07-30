@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient as TestClient
 from app.main import app
 
-def validation():
+def test_validation():
     with TestClient(app) as client:
 
         data = {
