@@ -19,9 +19,9 @@ def test_response_structure():
             "Compactness": 0.72
     }
 
-    response = client.post("/predict", json=data)
+        response = client.post("/predict", json=data)
 
-    result = response.json()
+        result = response.json()
 
-    assert "message" in result
-    assert "prediction" in result
+        assert "message" in result
+        assert "prediction" in result
