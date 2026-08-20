@@ -89,4 +89,10 @@ POST /predict -> Predicts the pumpkin seed variety ->
           "prediction": "ÜRGÜP"
     }
 
-    
+## ML analysis
+
+Report - [Report_Pumpkin__Seed__Classification.pdf](https://github.com/user-attachments/files/31271147/Report_Pumpkin__Seed__Classification.pdf)
+
+Presentation - [Presentation_Pumpkin Seed Classification.pdf](https://github.com/user-attachments/files/31271164/Presentation_Pumpkin.Seed.Classification.pdf)
+
+
